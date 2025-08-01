@@ -241,7 +241,7 @@ class App {
 		// cameraFolder.close()
 
 		this.morphTargetFolder = this.gui.addFolder("Morph Targets")
-		this.morphTargetFolder.close()
+		// this.morphTargetFolder.close()
 
 		// this.gui.close()
 	}
@@ -253,8 +253,8 @@ class App {
 
 		const loader = new GLTFLoader(loadingManager)
 		console.log("MODEL_PATH", MODEL_PATH)
-		const axesHelper = new AxesHelper(10)
-		this.scene.add(axesHelper)
+		// const axesHelper = new AxesHelper(10)
+		// this.scene.add(axesHelper)
 
 		// const animationKF = new NumberKeyframeTrack(".facialanimation", [0, 1, 2], [1, 0, 1])
 
@@ -274,8 +274,8 @@ class App {
 			const animationAction = this.mixer.clipAction(aniClip)
 			console.log("animationAction", animationAction)
 			animationAction.play()
-			// const head = mesh.getObjectByName("mesh_2")
-			// const influences = head.morphTargetInfluences
+			const head = mesh.getObjectByName("mesh_2")
+			const influences = head.morphTargetInfluences
 			//   // Center the model
 			//   const box = new THREE.Box3().setFromObject(this.model)
 			//   const center = box.getCenter(new THREE.Vector3())
@@ -294,9 +294,9 @@ class App {
 			//     this.mixer.clipAction(clip).play()
 			//   })
 			// }
-			// for (const [key, value] of Object.entries(head.morphTargetDictionary)) {
-			// 	this.morphTargetFolder.add(influences, value, 0, 1, 0.01).name(key.replace("blendShape1.", "")).listen()
-			// }
+			for (const [key, value] of Object.entries(head.morphTargetDictionary)) {
+				this.morphTargetFolder.add(influences, value, 0, 1, 0.01).name(key.replace("blendShape1.", "")).listen()
+			}
 			//   this.gui.close()
 			this.scene.add(mesh)
 			//   this.scene.add(this.model)
